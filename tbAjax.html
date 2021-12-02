@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabulator_Test</title>
+    <link href="https://unpkg.com/tabulator-tables@5.0.7/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.0.7/dist/js/tabulator.min.js"></script>
+</head>
+<style>
+    body {
+        margin: 40px;
+    }
+    #my_table {
+        width: 100%
+    }
+</style>
+<body>
+    <div id="my_table"></div>
+    <script>
+        // Tabulator 생성
+        var table = new Tabulator("#my_table", {
+            height: '50vh',
+            ajaxURL: 'https://jsonplaceholder.typicode.com/posts',
+            autoColumns: true,
+            layout: "fitDataTable",
+        });
+    </script>
+</body>
+
+</html>
