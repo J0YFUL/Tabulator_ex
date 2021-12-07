@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <title>JQuery_Test</title>
+    <style>
+        table {
+            border: 1px solid black;
+        }
+
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>TITLE</th>
+                <th colspan="5">BODY</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 데이터가 들어갈 부분 -->
+        </tbody>
+    </table>
+    <div id="data"></div>
+    <script>
+        $.ajax({
+						// JSON placeholder에서 제공하는 링크로 데이터를 받아옴.
+            url: 'https://jsonplaceholder.typicode.com/posts',
+            method: "GET",
+            dataType: "json",
+        }).done((data) => {
+						// $.each 함수에 첫번째 파라미터로 data 배열 객체를 넘겨주고 
+						// 반복문을 돌려 하나하나의 배열요소를 가지고 와서 가공하는 로직 작성.
+						// 여기서 key는 인덱스 번호(0부터 시작), value는 그 배열데이터 하나.
+            $.each(data,(key,value) => {
+                $('tbody').append(`
+                <tr>
+                    <td>${value.id}</td>
+                    <td>${value.title}</td>
+                    <td>${value.body}</td>
+                </tr>
+                `)
+            })
+        }).fail((xhr, status, errorThrown) => {
+
+        }).always((xhr, status) => {
+            console.log('ajax end');
+        });
+    </script>
+</body>
+
+</html>
